@@ -1,0 +1,12 @@
+.target{
+    max-width: 200px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+}
+
+.basic-buttons{
+    margin-top: 10px;
+}

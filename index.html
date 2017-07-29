@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Bootstrap  -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <!--fontAwesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="game.css">
 
     <title>SlapGame</title>
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+        <div class="info">
+            <span>Name: <span id="name"></span></span>
+            <span>Hits: <span id="hits"></span></span>
+            <span>Health: <span id="health"></span></span>
+        </div>
+
+        <span id="target-image"></span>
+
+        <div class="basic-buttons">
+            <button type="button" onclick="slap()">Slap</button>
+            <button type="button" onclick="punch()">Punch</button>
+            <button type="button" onclick="kick()">Kick</button>
+            <button type="button" onclick="annihilate()">Annihilate</button>
+        </div>
+
+        <div class="mod-buttons">
+            <!-- <button type="button" onclick=<span id="brass"></span>>Slap</button> -->
+            <button type="button" onclick="brassKnuckles()">Brass Knuckles</button>
+
+        </div>
+
+        <script src="game.js"></script>
+    </div>
 </body>
+
 </html>
