@@ -17,25 +17,34 @@
 
 <body>
     <div class="container-fluid">
-        <div class="info">
-            <span>Name: <span id="name"></span></span>
-            <span>Hits: <span id="hits"></span></span>
-            <span>Health: <span id="health"></span></span>
-        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span>Name: <span id="name"></span></span>
+            </div>
+            <div class="panel-body">
 
-        <span id="target-image"></span>
+                <div class="info">
+                    <span>Hits: <span id="hits"></span></span>
+                    <span>Health: <span id="health"></span></span>
+                </div>
 
-        <div class="basic-buttons">
-            <button type="button" onclick="slap()">Slap</button>
-            <button type="button" onclick="punch()">Punch</button>
-            <button type="button" onclick="kick()">Kick</button>
-            <button type="button" onclick="annihilate()">Annihilate</button>
-        </div>
 
-        <div class="mod-buttons">
-            <!-- <button type="button" onclick=<span id="brass"></span>>Slap</button> -->
-            <button type="button" onclick="brassKnuckles()">Brass Knuckles</button>
+                <span id="target-image"></span>
 
+                <div class="basic-buttons">
+                    <button type="button" onclick="slap()">Slap</button>
+                    <button type="button" onclick="punch()">Punch</button>
+                    <button type="button" onclick="kick()">Kick</button>
+                    <button type="button" onclick="annihilate()">Annihilate</button>
+                </div>
+
+                <div class="mod-buttons">
+                    <!-- <button type="button" onclick=<span id="brass"></span>>Slap</button> -->
+                    <button type="button" onclick="brassKnuckles()">Brass Knuckles</button>
+                    <button type="button" onclick="spikyBoots()">Spiky Boots</button>
+                    <button type="button" onclick="rocketLauncher()">Rocket Launcher</button>
+                </div>
+            </div>
         </div>
 
         <script src="game.js"></script>

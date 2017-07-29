@@ -1,6 +1,3 @@
-var health = 100;
-var name = '';
-var hits = 0;
 
 // var targetId = 1;
 
@@ -34,7 +31,8 @@ function Item(name, modifier) {
 var items = {
     brassKnuckles: new Item("Brass Knuckles", 4),
     spikyBoots: new Item("Spiky Boots", 3),
-    shield: new Item("Shield", 0.3)
+    shield: new Item("Shield", 0.3),
+    rocketLauncher: new Item("Rocket Launcher", 100)
 }
 
 
@@ -60,7 +58,7 @@ function kick() {
 }
 
 function annihilate() {
-    mainPlayer.health = (4*mainPlayer.totalMods);
+    mainPlayer.health = 4;
     mainPlayer.hits++;
     update();
 }
@@ -73,6 +71,14 @@ function addItem(item){
 //modifier button actions
 function brassKnuckles(){
     addItem(items.brassKnuckles);
+    update();
+}
+function spikyBoots(){
+    addItem(items.spikyBoots);
+    update();
+}
+function rocketLauncher(){
+    addItem(items.rocketLauncher);
     update();
 }
 
