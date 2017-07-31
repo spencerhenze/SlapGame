@@ -9,19 +9,26 @@ function Target(name, image) {
     this.health = 100;
     this.hits = 0;
     this.items = [];
-    this.totalMods = 1;
+    this.totalMods = 0.00000000000000000001;
     this.equipment = '';
 
     // targetID++;
 
     this.getTotalModifier = function () {
-        for (var i = 0; i < this.items.length; i++) {
-            var currentItem = this.items[i];
-            this.totalMods += currentItem.modifier;
+        debugger
+        if (this.items.length != 0) {
+            for (var i = 0; i < this.items.length; i++) {
+                var currentItem = this.items[i];
+                this.totalMods += currentItem.modifier;
+            }
         }
-        return this.totalMods;
+        // return this.totalMods;
+        else {
+            this.totalMods = 0.00000000000000000001;
+        }
     }
 }
+
 
 function Item(name, modifier) {
     this.name = name;
@@ -47,7 +54,6 @@ function slap() {
         if (currentItem.name == "Brass Knuckles") {
             mainPlayer.health -= (1 * mainPlayer.totalMods);
             mainPlayer.hits++;
-            debugger
             update();
             return;
         }
@@ -78,6 +84,7 @@ function kick() {
         var currentItem = mainPlayer.items[i];
         if (currentItem.name == "Spiky Boots") {
             mainPlayer.health -= (10 * mainPlayer.totalMods);
+            debugger
             mainPlayer.hits++;
             update();
             return;
@@ -107,19 +114,27 @@ function addItem(item) {
     mainPlayer.getTotalModifier();
 }
 
+function clearItem() {
+    debugger
+    mainPlayer.items.pop();
+    mainPlayer.getTotalModifier();
+
+}
+
 //modifier button actions
 function brassKnuckles() {
-    mainPlayer.items.pop();
+    clearItem();
     addItem(items.brassKnuckles);
     update();
 }
 function spikyBoots() {
-    mainPlayer.items.pop();
+    debugger
+    clearItem();
     addItem(items.spikyBoots);
     update();
 }
 function rocketLauncher() {
-    mainPlayer.items.pop();
+    clearItem();
     addItem(items.rocketLauncher);
     update();
 }

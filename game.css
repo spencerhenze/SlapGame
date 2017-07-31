@@ -6,6 +6,11 @@ body{
     text-align: center;
 }
 
+.center-all{
+    display: flex;
+    justify-content: center;
+}
+
 .target{
     max-width: 500px;
 }
@@ -23,7 +28,9 @@ body{
 
 .basic-buttons{
     margin-top: 10px;
+     
 }
+
 
 .mod-buttons{
     margin-top: 10px;
