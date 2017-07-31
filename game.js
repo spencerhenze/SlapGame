@@ -10,6 +10,7 @@ function Target(name, image) {
     this.hits = 0;
     this.items = [];
     this.totalMods = 1;
+    this.equipment = '';
 
     // targetID++;
 
@@ -40,44 +41,85 @@ var items = {
 
 
 function slap() {
-    mainPlayer.health -= (1*mainPlayer.totalMods);
+    // iterate through the items array.
+    for (var i = 0; i < mainPlayer.items.length; i++) {
+        var currentItem = mainPlayer.items[i];
+        if (currentItem.name == "Brass Knuckles") {
+            mainPlayer.health -= (1 * mainPlayer.totalMods);
+            mainPlayer.hits++;
+            debugger
+            update();
+            return;
+        }
+    }
+
+    mainPlayer.health--;
     mainPlayer.hits++;
     update();
 }
 
 function punch() {
-    mainPlayer.health -= (5*mainPlayer.totalMods);
+    for (var i = 0; i < mainPlayer.items.length; i++) {
+        var currentItem = mainPlayer.items[i];
+        if (currentItem.name == "Brass Knuckles") {
+            mainPlayer.health -= (5 * mainPlayer.totalMods);
+            mainPlayer.hits++;
+            update();
+            return;
+        }
+    }
+    mainPlayer.health -= 5;
     mainPlayer.hits++;
     update();
 }
 
 function kick() {
-    mainPlayer.health -= (10*mainPlayer.totalMods);
+    for (var i = 0; i < mainPlayer.items.length; i++) {
+        var currentItem = mainPlayer.items[i];
+        if (currentItem.name == "Spiky Boots") {
+            mainPlayer.health -= (10 * mainPlayer.totalMods);
+            mainPlayer.hits++;
+            update();
+            return;
+        }
+    }
+    mainPlayer.health -= 10;
     mainPlayer.hits++;
     update();
 }
 
 function annihilate() {
-    mainPlayer.health = 4;
-    mainPlayer.hits++;
-    update();
+    for (var i = 0; i < mainPlayer.items.length; i++) {
+        var currentItem = mainPlayer.items[i];
+        if (currentItem.name == "Rocket Launcher") {
+            mainPlayer.health -= (100 * mainPlayer.totalMods);
+            mainPlayer.hits++;
+            update();
+            return;
+        }
+    }
+    alert("Dang... You're cold as ice. \nIf you're sure about this you'll have to equip yourself with the rocket launcher.")
 }
 
-function addItem(item){
+function addItem(item) {
+    mainPlayer.equipment = item.name + ` (x ${item.modifier})`;
     mainPlayer.items.push(item);
     mainPlayer.getTotalModifier();
 }
 
 //modifier button actions
-function brassKnuckles(){
+function brassKnuckles() {
+    mainPlayer.items.pop();
     addItem(items.brassKnuckles);
     update();
 }
-function spikyBoots(){
+function spikyBoots() {
+    mainPlayer.items.pop();
     addItem(items.spikyBoots);
     update();
 }
-function rocketLauncher(){
+function rocketLauncher() {
+    mainPlayer.items.pop();
     addItem(items.rocketLauncher);
     update();
 }
@@ -92,6 +134,7 @@ function update() {
     document.getElementById('name').innerHTML = mainPlayer.name;
     document.getElementById('hits').innerHTML = mainPlayer.hits;
     document.getElementById('health').innerHTML = mainPlayer.health;
+    document.getElementById('mod-list').innerHTML = mainPlayer.equipment;
 
 }
 
@@ -100,7 +143,7 @@ function newPlayer() {
     var playerImage = `<img class="target" src="https://robohash.org/${playerName}.png" alt="robot">`;
 
     var player1 = new Target(playerName, playerImage);
-    return player1; 
+    return player1;
 }
 
 var mainPlayer = newPlayer();

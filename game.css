@@ -1,5 +1,19 @@
+body{
+    background-color: #ADD9F9;
+}
+
+.name-block{
+    text-align: center;
+}
+
 .target{
-    max-width: 200px;
+    max-width: 500px;
+}
+
+.image-block{
+    display:flex;
+    justify-content: center;
+
 }
 
 .info{

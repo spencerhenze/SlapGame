@@ -18,7 +18,7 @@
 <body>
     <div class="container-fluid">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading name-block">
                 <span>Name: <span id="name"></span></span>
             </div>
             <div class="panel-body">
@@ -28,8 +28,9 @@
                     <span>Health: <span id="health"></span></span>
                 </div>
 
-
-                <span id="target-image"></span>
+                <div class="image-block">
+                    <span id="target-image"></span>
+                </div>
 
                 <div class="basic-buttons">
                     <button type="button" onclick="slap()">Slap</button>
@@ -43,6 +44,9 @@
                     <button type="button" onclick="brassKnuckles()">Brass Knuckles</button>
                     <button type="button" onclick="spikyBoots()">Spiky Boots</button>
                     <button type="button" onclick="rocketLauncher()">Rocket Launcher</button>
+                </div>
+                <div>
+                    <span>You are equipped with: <span id="mod-list"></span></span>
                 </div>
             </div>
         </div>
