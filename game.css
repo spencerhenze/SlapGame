@@ -3,7 +3,24 @@ body{
 }
 
 .name-block{
+    font-size: 3rem;
     text-align: center;
+    font-weight: bold;
+}
+
+.labels{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.health-bar-general{
+    min-width: 2em;
+}
+
+.equip-readout{
+    margin-top: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .center-all{

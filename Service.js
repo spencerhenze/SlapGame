@@ -49,7 +49,7 @@ function SlapService() {
     }
 
     function addItem(item) {
-        mainPlayer.equipment = item.name + ` (x ${item.modifier})`;
+        mainPlayer.equipment = item.name + ` (x ${item.modifier}) for applicable attacks`;
         mainPlayer.items.push(item);
         mainPlayer.getTotalModifier();
     }
@@ -69,16 +69,36 @@ function SlapService() {
     //Make the mainPlayer object
     var mainPlayer = newPlayer();
 
+    function updateProgressBar() {
+        var barColor = '';
+        if (mainPlayer.health > 30) {
+            barColor = 'progress-bar-success';
+        }
+        if (mainPlayer.health <= 30 && mainPlayer.health > 20) {
+            barColor = 'progress-bar-warning';
+        }
+        if (mainPlayer.health <= 20) {
+            barColor = 'progress-bar-danger';
+        }
+
+        var template = `
+            <div class="progress-bar health-bar-general ${barColor}" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${mainPlayer.health}%;">
+                ${mainPlayer.health}%
+            </div>
+        `
+        return template;
+    }
+
     //this function will be responsible for updating the user interace whenver a value changes
     function update() {
         if (mainPlayer.health < 0) {
             mainPlayer.health = 0;
         }
 
+        document.getElementById('health-bar').innerHTML = updateProgressBar();
         document.getElementById('target-image').innerHTML = mainPlayer.image;
         document.getElementById('name').innerHTML = mainPlayer.name;
         document.getElementById('hits').innerHTML = mainPlayer.hits;
-        document.getElementById('health').innerHTML = mainPlayer.health;
         document.getElementById('mod-list').innerHTML = mainPlayer.equipment;
 
     }
