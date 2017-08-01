@@ -1,9 +1,8 @@
 
 function SlapService() {
+    var mainPlayer = null;
 
-    // var targetId = 1;
     function Target(name, image) {
-        // this.targetId = targetId;
         this.name = name;
         this.image = image;
         this.health = 100;
@@ -12,7 +11,6 @@ function SlapService() {
         this.totalMods = 0.00000000000000000001;
         this.equipment = '';
 
-        // targetID++;
 
         this.getTotalModifier = function () {
             if (this.items.length != 0) {
@@ -56,18 +54,6 @@ function SlapService() {
 
 
 
-    // Process to make a player
-    function newPlayer() {
-        var playerName = prompt("Who do you want to beat up?")
-        var playerImage = `<img class="target" src="https://robohash.org/${playerName}.png" alt="robot">`;
-
-        var player = new Target(playerName, playerImage);
-        return player;
-
-    }
-
-    //Make the mainPlayer object
-    var mainPlayer = newPlayer();
 
     function updateProgressBar() {
         var barColor = '';
@@ -95,20 +81,23 @@ function SlapService() {
             mainPlayer.health = 0;
         }
 
-        document.getElementById('health-bar').innerHTML = updateProgressBar();
-        document.getElementById('target-image').innerHTML = mainPlayer.image;
-        document.getElementById('name').innerHTML = mainPlayer.name;
-        document.getElementById('hits').innerHTML = mainPlayer.hits;
-        document.getElementById('mod-list').innerHTML = mainPlayer.equipment;
-
     }
 
 
 
 
     //Public
+    // Process to make a player
+    this.newPlayer = function newPlayer(cb) {
+        var playerName = prompt("Who do you want to beat up?")
+        var playerImage = `<img class="target" src="https://robohash.org/${playerName}.png" alt="robot">`;
 
-    this.slapRobot = function slapRobot() {
+        mainPlayer = new Target(playerName, playerImage);
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+    }
+
+
+    this.slapRobot = function slapRobot(cb) {
         // iterate through the items array.
         for (var i = 0; i < mainPlayer.items.length; i++) {
             var currentItem = mainPlayer.items[i];
@@ -116,53 +105,58 @@ function SlapService() {
                 mainPlayer.health -= (1 * mainPlayer.totalMods);
                 mainPlayer.hits++;
                 update();
-                return;
+                cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
             }
         }
 
         mainPlayer.health--;
         mainPlayer.hits++;
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+
     }
 
-    this.punchRobot = function punchRobot() {
+    this.punchRobot = function punchRobot(cb) {
         for (var i = 0; i < mainPlayer.items.length; i++) {
             var currentItem = mainPlayer.items[i];
             if (currentItem.name == "Brass Knuckles") {
                 mainPlayer.health -= (5 * mainPlayer.totalMods);
                 mainPlayer.hits++;
                 update();
-                return;
+                cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
             }
         }
         mainPlayer.health -= 5;
         mainPlayer.hits++;
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+
     }
 
-    this.kickRobot = function kickRobot() {
+    this.kickRobot = function kickRobot(cb) {
         for (var i = 0; i < mainPlayer.items.length; i++) {
             var currentItem = mainPlayer.items[i];
             if (currentItem.name == "Spiky Boots") {
                 mainPlayer.health -= (10 * mainPlayer.totalMods);
                 mainPlayer.hits++;
                 update();
-                return;
+                cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
             }
         }
         mainPlayer.health -= 10;
         mainPlayer.hits++;
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
     }
 
-    this.annihilateRobot = function annihilateRobot() {
+    this.annihilateRobot = function annihilateRobot(cb) {
         for (var i = 0; i < mainPlayer.items.length; i++) {
             var currentItem = mainPlayer.items[i];
             if (currentItem.name == "Rocket Launcher") {
                 mainPlayer.health -= (100 * mainPlayer.totalMods);
                 mainPlayer.hits++;
                 update();
-                return;
+                cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
             }
         }
         alert("Dang... You're cold as ice. \nIf you're sure about this you'll have to equip yourself with the rocket launcher.")
@@ -171,24 +165,30 @@ function SlapService() {
 
 
     //modifier button actions
-    this.brassKnuckles = function brassKnuckles() {
+    this.brassKnuckles = function brassKnuckles(cb) {
         clearItem();
         addItem(items.brassKnuckles);
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+
     }
 
-    this.spikyBoots = function spikyBoots() {
+    this.spikyBoots = function spikyBoots(cb) {
         clearItem();
         addItem(items.spikyBoots);
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+
     }
 
-    this.rocketLauncher = function rocketLauncher() {
+    this.rocketLauncher = function rocketLauncher(cb) {
         clearItem();
         addItem(items.rocketLauncher);
         update();
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+
     }
 
-    update();
+    // update();
 
 } // end service constructor
