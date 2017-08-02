@@ -55,6 +55,11 @@ function SlapController() {
     this.rocketLauncher = function rocketLauncher() {
         slapService.rocketLauncher(draw);
     }
+
+    this.resetPlayer = function resetPlayer() {
+        slapService.resetPlayer(draw);
+    }
+
     newPlayer();
 
 

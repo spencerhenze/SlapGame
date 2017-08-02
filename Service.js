@@ -80,6 +80,9 @@ function SlapService() {
         if (mainPlayer.health < 0) {
             mainPlayer.health = 0;
         }
+        if (mainPlayer.health == 0) {
+            mainPlayer.image = '<img class="target" src="https://media.giphy.com/media/6ZUMwujSE8LRK/giphy.gif" alt="destroyed">';
+        }
 
     }
 
@@ -157,9 +160,11 @@ function SlapService() {
                 mainPlayer.hits++;
                 update();
                 cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
+                return
             }
         }
         alert("Dang... You're cold as ice. \nIf you're sure about this you'll have to equip yourself with the rocket launcher.")
+
     }
 
 
@@ -187,6 +192,15 @@ function SlapService() {
         update();
         cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
 
+    }
+
+    this.resetPlayer = function resetPlayer(cb) {
+        mainPlayer.health = 100;
+        mainPlayer.hits = 0;
+        mainPlayer.equipment = '';
+        mainPlayer.items = [];
+        mainPlayer.image = `<img class="target" src="https://robohash.org/${mainPlayer.name}.png" alt="robot">`
+        cb(mainPlayer.health, updateProgressBar(), mainPlayer.image, mainPlayer.name, mainPlayer.hits, mainPlayer.equipment);
     }
 
     // update();

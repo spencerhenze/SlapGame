@@ -53,6 +53,11 @@ body{
     margin-top: 10px;
 }
 
+.reset-button{
+    display: flex;
+    align-items: center;
+}
+
 .center-text{
     text-align: center;
 }
